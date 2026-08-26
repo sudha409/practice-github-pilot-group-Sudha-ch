@@ -1,15 +1,13 @@
-package Models;
+package com.ClassManager.demo.Models;
 
-public class Students {
+public class Teachers {
     private String name;
     private int id;
-    private int grade;
 
     // Constructor
-    public Students(String name, int id, int grade) {
+    public Teachers(String name, int id) {
         this.name = name;
         this.id = id;
-        this.grade = grade;
     }
 
     // Getters and Setters
@@ -28,13 +26,4 @@ public class Students {
     public void setId(int id) {
         this.id = id;
     }
-
-    public int getGrade() {
-        return grade;
-    }
-
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
-
 }
