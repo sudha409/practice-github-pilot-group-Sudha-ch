@@ -1,5 +1,6 @@
 package com.ClassManager.demo.Controllers;
 
+import com.ClassManager.demo.Models.Students;
 import com.ClassManager.demo.Models.Teachers;
 import com.ClassManager.demo.Repositories.TeacherRepository;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,11 @@ public class TeacherController {
         return teacherRepository.save(teachers);
     }
 
+    @PutMapping("/{id}")
+    public Teachers updateTeacher(@PathVariable int id, @RequestBody Teachers teachers) {
+        teachers.setId(id);
+        return teacherRepository.save(teachers);
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTeacher(@PathVariable int id) {
         if (!teacherRepository.existsById(id)) {
