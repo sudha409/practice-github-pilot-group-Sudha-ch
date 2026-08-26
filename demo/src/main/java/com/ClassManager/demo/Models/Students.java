@@ -11,7 +11,8 @@ import jakarta.persistence.Id;
 public class Students {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
+
     private String name;
     private int grade;
 
