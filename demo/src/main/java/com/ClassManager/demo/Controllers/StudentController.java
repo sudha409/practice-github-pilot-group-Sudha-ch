@@ -2,10 +2,7 @@ package com.ClassManager.demo.Controllers;
 
 import com.ClassManager.demo.Models.Students;
 import com.ClassManager.demo.Repositories.StudentRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,21 @@ public class StudentController {
     @GetMapping("/{id}")
     public String getStudentById(@PathVariable int id) {
         return studentRepository.findById(id).toString();
+    }
+
+    @PostMapping
+    public Students addStudent(@RequestBody Students students) {
+        return studentRepository.save(students);
+    }
+
+    @PutMapping("/{id}")
+    public Students updateStudent(@PathVariable int id, @RequestBody Students students) {
+        students.setId(id);
+        return studentRepository.save(students);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteStudent(@PathVariable int id) {
+        studentRepository.deleteById(id);
     }
 }
