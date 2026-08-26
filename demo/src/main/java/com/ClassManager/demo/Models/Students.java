@@ -17,9 +17,8 @@ public class Students {
     private int grade;
 
     // Constructor
-    public Students(String name, int id, int grade) {
+    public Students(String name, int grade) {
         this.name = name;
-        this.id = id;
         this.grade = grade;
     }
 
@@ -34,11 +33,11 @@ public class Students {
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
