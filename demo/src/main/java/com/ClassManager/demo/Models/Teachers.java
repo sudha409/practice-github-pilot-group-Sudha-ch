@@ -14,12 +14,14 @@ public class Teachers {
     private Integer id;
 
     private String name;
+    private String subject;
 
     public Teachers() {
     }
 
-    public Teachers(String name) {
+    public Teachers(String name, String subject) {
         this.name = name;
+        this.subject = subject;
     }
 
     public Integer getId() {
@@ -36,5 +38,13 @@ public class Teachers {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 }

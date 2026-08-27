@@ -1,8 +1,7 @@
 package com.ClassManager.demo.Controllers;
 
-import com.ClassManager.demo.Models.Students;
 import com.ClassManager.demo.Models.Teachers;
-import com.ClassManager.demo.Repositories.TeacherRepository;
+import com.ClassManager.demo.Services.TeacherService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,41 +11,39 @@ import java.util.List;
 @RequestMapping("/teachers")
 public class TeacherController {
 
-    private final TeacherRepository teacherRepository;
+    private final TeacherService teacherService;
 
-    public TeacherController(TeacherRepository teacherRepository) {
-        this.teacherRepository = teacherRepository;
+    public TeacherController(TeacherService teacherService) {
+        this.teacherService = teacherService;
     }
 
     @GetMapping
     public List<Teachers> getTeachers() {
-        return teacherRepository.findAll();
+        return teacherService.getAllTeachers();
+    }
+
+    @GetMapping("/subject")
+    public List<Teachers> getTeachersBySubject(@RequestParam String subject) {
+        return teacherService.getTeachersBySubject(subject);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Teachers> getTeacherById(@PathVariable int id) {
-        return teacherRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return teacherService.getTeacherById(id);
     }
 
     @PostMapping
     public Teachers addTeacher(@RequestBody Teachers teachers) {
-        return teacherRepository.save(teachers);
+        return teacherService.addTeacher(teachers);
     }
 
     @PutMapping("/{id}")
     public Teachers updateTeacher(@PathVariable int id, @RequestBody Teachers teachers) {
-        teachers.setId(id);
-        return teacherRepository.save(teachers);
+        return teacherService.updateTeacher(id, teachers);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTeacher(@PathVariable int id) {
-        if (!teacherRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-
-        teacherRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
+        return teacherService.deleteTeacher(id);
     }
 }
